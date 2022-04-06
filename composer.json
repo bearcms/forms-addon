@@ -18,7 +18,7 @@
         "php": "7.1.*|7.2.*|7.3.*|7.4.*|8.0.*|8.1.*",
         "bearcms/bearframework-addon": "^1.49",
         "bearframework/localization-addon": "1.*",
-        "bearframework/models-addon": "^1.1", // todo update
+        "bearframework/models-addon": "^1.4",
         "bearframework/tasks-addon": "1.*",
         "bearframework/emails-addon": "1.*",
         "ivopetkov/form-bearframework-addon": "1.*",
