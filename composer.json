@@ -1,0 +1,35 @@
+{
+    "name": "bearcms/forms-addon",
+    "description": "Forms addon for Bear CMS",
+    "keywords": [
+        "forms",
+        "Bear CMS"
+    ],
+    "homepage": "https://github.com/bearcms/forms-addon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bear CMS",
+            "email": "support@bearcms.com",
+            "homepage": "https://bearcms.com/"
+        }
+    ],
+    "require": {
+        "php": "7.1.*|7.2.*|7.3.*|7.4.*|8.0.*|8.1.*",
+        "bearcms/bearframework-addon": "^1.49",
+        "bearframework/localization-addon": "1.*",
+        "bearframework/models-addon": "^1.1", // todo update
+        "bearframework/tasks-addon": "1.*",
+        "bearframework/emails-addon": "1.*",
+        "ivopetkov/form-bearframework-addon": "1.*",
+        "ivopetkov/form-elements-bearframework-addon": "1.*"
+    },
+    "require-dev": {
+        "bearcms/addon-tests": "1.*"
+    },
+    "autoload": {
+        "files": [
+            "autoload.php"
+        ]
+    }
+}
