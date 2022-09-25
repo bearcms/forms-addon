@@ -69,13 +69,13 @@ class Response extends Model
                                     $valueSummary[] = $getSingleLineText(implode(', ', $value['value']));
                                 }
                             } elseif (is_string($value['value'])) {
-                                if (strlen($value['value']) > 0) {
+                                if (mb_strlen($value['value']) > 0) {
                                     $valueSummary[] = $getSingleLineText($value['value']);
                                 }
                             }
                         }
                     }
-                    return substr(implode(', ', $valueSummary), 0, 1000);
+                    return mb_substr(implode(', ', $valueSummary), 0, 1000);
                 }
             ])
             ->defineProperty('valueDetails', [
@@ -91,7 +91,7 @@ class Response extends Model
                                     $partValue = implode(', ', $value['value']);
                                 }
                             } elseif (is_string($value['value'])) {
-                                if (strlen($value['value']) > 0) {
+                                if (mb_strlen($value['value']) > 0) {
                                     $partValue = $value['value'];
                                 }
                             }

@@ -51,7 +51,7 @@ if ($formModel !== null) {
         }
         if ($type === 'openedList') {
             $form->constraints->setValidator($fieldName, function ($value) use ($field) {
-                if (strlen($value) === 0) {
+                if (mb_strlen($value) === 0) {
                     return true;
                 }
                 $listMultiSelect = isset($field['listMultiSelect']) && (int)$field['listMultiSelect'] > 0;
@@ -88,7 +88,7 @@ if ($formModel !== null) {
             });
         } elseif ($type === 'closedList') {
             $form->constraints->setValidator($fieldName, function ($value) use ($field) {
-                if (strlen($value) === 0) {
+                if (mb_strlen($value) === 0) {
                     return true;
                 }
                 $listOptions = isset($field['listOptions']) && is_array($field['listOptions']) ? $field['listOptions'] : [];
@@ -119,7 +119,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
 
         $fieldName = 'form-field-' . $id;
         $fieldValue = isset($values[$fieldName]) ? $values[$fieldName] : '';
-        if (strlen($fieldValue) > 100000) { // for protection
+        if (mb_strlen($fieldValue) > 100000) { // for protection
             $form->throwError(__('bearcms-forms.form.field.valueLengthProtection'));
         }
         if ($type === 'text') {
@@ -141,7 +141,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
                 $clientValues[md5($listOption)] = $listOption;
             }
             if ($listMultiSelect) {
-                $value = strlen($value) > 0 ? json_decode($value, true) : [];
+                $value = mb_strlen($value) > 0 ? json_decode($value, true) : [];
                 if (!is_array($value)) {
                     $value = [];
                 }
@@ -181,9 +181,9 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
 
     $onSubmit = $formModel->onSubmit;
     if ($onSubmit === 'message') {
-        $resultJS = 'alert(' . json_encode($formModel->onSubmitMessage) . ');';
+        $resultJS = 'alert(' . json_encode($formModel->onSubmitMessage, JSON_THROW_ON_ERROR) . ');';
     } elseif ($onSubmit === 'redirect') {
-        $resultJS = 'window.location.assign(' . json_encode($formModel->onSubmitRedirectURL) . ');';
+        $resultJS = 'window.location.assign(' . json_encode($formModel->onSubmitRedirectURL, JSON_THROW_ON_ERROR) . ');';
     } else {
         $resultJS = 'alert("Successfully submitted!");';
     }
@@ -210,7 +210,7 @@ if (!empty($fields)) {
         $fieldName = 'form-field-' . $id;
 
         $fieldAttributes = 'name="' . htmlentities($fieldName) . '" label="' . htmlentities($name) . '"';
-        if (isset($field['hint']) && strlen($field['hint']) > 0) {
+        if (isset($field['hint']) && mb_strlen($field['hint']) > 0) {
             $fieldAttributes .= ' hint="' . htmlentities($field['hint']) . '"';
         }
         if ($type === 'text') {

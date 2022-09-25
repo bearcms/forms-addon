@@ -133,12 +133,12 @@ class Form extends Model
                                     };
                                     if (is_array($value['value'])) {
                                         foreach ($value['value'] as $optionValue) {
-                                            if (strlen($optionValue) > 0) {
+                                            if (mb_strlen($optionValue) > 0) {
                                                 $addOptionValue($optionValue);
                                             }
                                         }
                                     } elseif (is_string($value['value'])) {
-                                        if (strlen($value['value']) > 0) {
+                                        if (mb_strlen($value['value']) > 0) {
                                             $addOptionValue($value['value']);
                                         }
                                     }

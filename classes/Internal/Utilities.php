@@ -39,7 +39,7 @@ class Utilities
     {
         $app = App::get();
         $notifyEmails = (string)$form->notifyEmails;
-        if (strlen($notifyEmails) > 0 || \BearCMS\Internal\Config::hasFeature('NOTIFICATIONS')) {
+        if (mb_strlen($notifyEmails) > 0 || \BearCMS\Internal\Config::hasFeature('NOTIFICATIONS')) {
             $app->tasks->add('bearcms-forms-send-new-response-notification', [
                 'responseID' => $responseID
             ]);
@@ -66,14 +66,14 @@ class Utilities
                     $app->notifications->send('bearcms-user-administrator', $notification);
                 }
                 $notifyEmails = (string)$form->notifyEmails;
-                if (strlen($notifyEmails) > 0) {
+                if (mb_strlen($notifyEmails) > 0) {
                     $senderEmail = Utilities::$notificationEmailsSenderEmail;
                     if ($senderEmail !== null) {
                         $formName = $response->formName;
                         $recipients = explode(';', str_replace(',', ';', $notifyEmails));
                         foreach ($recipients as $recipient) {
                             $recipient = trim($recipient);
-                            if (strlen($recipient) === 0) {
+                            if (mb_strlen($recipient) === 0) {
                                 continue;
                             }
                             $email = $app->emails->make();

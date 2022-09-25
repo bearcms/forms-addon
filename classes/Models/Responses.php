@@ -33,7 +33,7 @@ class Responses extends ModelsRepository
         });
         $this->setIDGenerator(function (Response $response) {
             $formID = (string)$response->formID;
-            if (strlen($formID) === 0) {
+            if (mb_strlen($formID) === 0) {
                 throw new \Exception('The formID property is required!');
             }
             $responses = $this->getList()
