@@ -55,8 +55,8 @@ $app->bearCMS->addons
                 ]
             ]);
 
-            \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($context, $idPrefix, $parentSelector) {
-                $groupForm = $context->addGroup(__("bearcms-forms.themes.options.Form"));
+            \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
+                $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
 
                 $groupFormFields = $groupForm->addGroup(__("bearcms-forms.themes.options.FormFields"));
 
@@ -64,33 +64,36 @@ $app->bearCMS->addons
                     $labelGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Label"));
                     $labelGroup->addOption($idPrefix . $name . "LabelCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]']
                         ],
-                        "value" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
+                        "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
                     ]);
                 };
                 $addFieldHint = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector) {
                     $hintGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Hint"));
                     $hintGroup->addOption($idPrefix . $name . "HintCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]']
                         ],
-                        "value" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
+                        "defaultvalue" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
                     ]);
                 };
                 $addFieldContainer = function ($fieldGroup, string $name, string $className) use ($idPrefix, $parentSelector) {
                     $containerGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Container"));
                     $containerGroup->addOption($idPrefix . $name . "ContainerCSS", "css", '', [
                         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                         "cssOutput" => [
                             ["rule", $parentSelector . " ." . $className, "display:block;box-sizing:border-box;"],
                             ["selector", $parentSelector . " ." . $className]
                         ],
-                        "value" => '{"padding-bottom":"15px"}'
+                        "defaultvalue" => '{"padding-bottom":"15px"}'
                     ]);
                 };
 
@@ -98,11 +101,12 @@ $app->bearCMS->addons
                 $fieldText = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldText"));
                 $fieldText->addOption($idPrefix . "FormFieldTextCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-text-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-text-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldText, 'FormFieldText', 'textbox', 'bearcms-form-element-field-text-container');
                 $addFieldHint($fieldText, 'FormFieldText', 'textbox', 'bearcms-form-element-field-text-container');
@@ -112,11 +116,12 @@ $app->bearCMS->addons
                 $fieldTextarea = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldTextarea"));
                 $fieldTextarea->addOption($idPrefix . "FormFieldTextareaCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-textarea-container [data-form-element-type="textarea"] [data-form-element-component="textarea"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-textarea-container [data-form-element-type="textarea"] [data-form-element-component="textarea"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"140px","line-height":"24px","padding-left":"13px","padding-right":"13px","padding-top":"8px","padding-bottom":"8px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"140px","line-height":"24px","padding-left":"13px","padding-right":"13px","padding-top":"8px","padding-bottom":"8px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldTextarea, 'FormFieldTextarea', 'textarea', 'bearcms-form-element-field-textarea-container');
                 $addFieldHint($fieldTextarea, 'FormFieldTextarea', 'textarea', 'bearcms-form-element-field-textarea-container');
@@ -126,11 +131,12 @@ $app->bearCMS->addons
                 $fieldName = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldName"));
                 $fieldName->addOption($idPrefix . "FormFieldNameCSS", "css", '', [
                     "cssTypes" => ["cssName", "cssNameShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-name-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-name-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldName, 'FormFieldName', 'textbox', 'bearcms-form-element-field-name-container');
                 $addFieldHint($fieldName, 'FormFieldName', 'textbox', 'bearcms-form-element-field-name-container');
@@ -140,11 +146,12 @@ $app->bearCMS->addons
                 $fieldEmail = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldEmail"));
                 $fieldEmail->addOption($idPrefix . "FormFieldEmailCSS", "css", '', [
                     "cssTypes" => ["cssEmail", "cssEmailShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-email-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-email-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldEmail, 'FormFieldEmail', 'textbox', 'bearcms-form-element-field-email-container');
                 $addFieldHint($fieldEmail, 'FormFieldEmail', 'textbox', 'bearcms-form-element-field-email-container');
@@ -154,11 +161,12 @@ $app->bearCMS->addons
                 $fieldPhone = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldPhone"));
                 $fieldPhone->addOption($idPrefix . "FormFieldPhoneCSS", "css", '', [
                     "cssTypes" => ["cssPhone", "cssPhoneShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-phone-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-phone-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
                 $addFieldHint($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
@@ -172,47 +180,52 @@ $app->bearCMS->addons
                 $fieldOpenedListSingleSelectOptionButton = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionButton"));
                 $fieldOpenedListSingleSelectOptionButton->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionButtonCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]', "flex:0 0 auto;align-self:start;appearance:none;-webkit-appearance:none;box-sizing:border-box;margin:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]']
                     ],
-                    "value" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"50%","border-top-right-radius":"50%","border-bottom-left-radius":"50%","border-bottom-right-radius":"50%"}'
+                    "defaultvalue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"50%","border-top-right-radius":"50%","border-bottom-left-radius":"50%","border-bottom-right-radius":"50%"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionButtonChecked = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionButtonChecked"));
                 $fieldOpenedListSingleSelectOptionButtonChecked->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionButtonCheckedCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]:checked']
                     ],
-                    "value" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/radio.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"30px 30px"}'
+                    "defaultvalue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/radio.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"30px 30px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionText = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionText"));
                 $fieldOpenedListSingleSelectOptionText->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionTextCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionTextbox = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionTextbox"));
                 $fieldOpenedListSingleSelectOptionTextbox->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionTextboxCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-textbox"]', "align-self:start;display:inline-block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-textbox"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionContainer = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListSingleSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"] > label', "display:inline-flex;flex-direction:row;"],
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"]', "display:flex;box-sizing:border-box;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"]']
                     ],
-                    "value" => '{"padding-bottom":"5px"}' // todo except the last one
+                    "defaultvalue" => '{"padding-bottom":"5px"}' // todo except the last one
                 ]);
                 $addFieldContainer($fieldOpenedListSingleSelect, 'FormFieldOpenedListSingleSelect', 'bearcms-form-element-field-opened-list-single-select-container');
 
@@ -224,47 +237,52 @@ $app->bearCMS->addons
                 $fieldOpenedListMultiSelectOptionButton = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionButton"));
                 $fieldOpenedListMultiSelectOptionButton->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionButtonCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]', "flex:0 0 auto;align-self:start;appearance:none;-webkit-appearance:none;box-sizing:border-box;margin:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]']
                     ],
-                    "value" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionButtonChecked = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionButtonChecked"));
                 $fieldOpenedListMultiSelectOptionButtonChecked->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionButtonCheckedCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]:checked']
                     ],
-                    "value" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/checkbox.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"20px 20px"}'
+                    "defaultvalue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/checkbox.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"20px 20px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionText = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText"));
                 $fieldOpenedListMultiSelectOptionText->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionTextCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionTextbox = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionTextbox"));
                 $fieldOpenedListMultiSelectOptionTextbox->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionTextboxCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-textbox"]', "align-self:start;display:inline-block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-textbox"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionContainer = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListMultiSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"] > label', "display:inline-flex;flex-direction:row;"],
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"]', "display:flex;box-sizing:border-box;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"]']
                     ],
-                    "value" => '{"padding-bottom":"5px"}' // todo except the last one
+                    "defaultvalue" => '{"padding-bottom":"5px"}' // todo except the last one
                 ]);
                 $addFieldContainer($fieldOpenedListMultiSelect, 'FormFieldOpenedListMultiSelect', 'bearcms-form-element-field-opened-list-multi-select-container');
 
@@ -272,11 +290,12 @@ $app->bearCMS->addons
                 $fieldClosedList = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldClosedList"));
                 $fieldClosedList->addOption($idPrefix . "FormFieldClosedListCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-closed-list-container [data-form-element-type="select"] [data-form-element-component="select"]', "display:block;appearance:none;-webkit-appearance:none;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-closed-list-container [data-form-element-type="select"] [data-form-element-component="select"]']
                     ],
-                    "value" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
                 $addFieldHint($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
@@ -286,15 +305,17 @@ $app->bearCMS->addons
                 $submitButton = $groupForm->addGroup(__("bearcms-forms.themes.options.SubmitButton"));
                 $submitButton->addOption($idPrefix . "FormSubmitButtonCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-submit-button-container [data-form-element-type="submit-button"] [data-form-element-component="button"]', "box-sizing:border-box;cursor:pointer;display:inline-block;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-submit-button-container [data-form-element-type="submit-button"] [data-form-element-component="button"]']
                     ],
-                    "value" => '{"background-color":"#333333","font-size":"14px","font-family":"Arial","height":"40px","line-height":"40px","padding-left":"13px","padding-right":"13px","color":"#ffffff","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultvalue" => '{"background-color":"#333333","font-size":"14px","font-family":"Arial","height":"40px","line-height":"40px","padding-left":"13px","padding-right":"13px","color":"#ffffff","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $submitButtonContainerGroup = $submitButton->addGroup(__("bearcms-forms.themes.options.Container"));
                 $submitButtonContainerGroup->addOption($idPrefix . "FormSubmitButtonContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . " .bearcms-form-element-submit-button-container", "display:block;box-sizing:border-box;"],
                         ["selector", $parentSelector . " .bearcms-form-element-submit-button-container"]
