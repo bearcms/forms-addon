@@ -130,7 +130,7 @@ $app->bearCMS->addons
                 // Name
                 $fieldName = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldName"));
                 $fieldName->addOption($idPrefix . "FormFieldNameCSS", "css", '', [
-                    "cssTypes" => ["cssName", "cssNameShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
                     "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-name-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
@@ -145,7 +145,7 @@ $app->bearCMS->addons
                 // Email
                 $fieldEmail = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldEmail"));
                 $fieldEmail->addOption($idPrefix . "FormFieldEmailCSS", "css", '', [
-                    "cssTypes" => ["cssEmail", "cssEmailShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
                     "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-email-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
@@ -160,7 +160,7 @@ $app->bearCMS->addons
                 // Phone
                 $fieldPhone = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldPhone"));
                 $fieldPhone->addOption($idPrefix . "FormFieldPhoneCSS", "css", '', [
-                    "cssTypes" => ["cssPhone", "cssPhoneShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
                     "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-phone-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
