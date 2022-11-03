@@ -64,7 +64,7 @@ $app->bearCMS->addons
                     $labelGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Label"));
                     $labelGroup->addOption($idPrefix . $name . "LabelCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                        "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]']
@@ -76,7 +76,7 @@ $app->bearCMS->addons
                     $hintGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Hint"));
                     $hintGroup->addOption($idPrefix . $name . "HintCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                        "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]']
@@ -88,7 +88,7 @@ $app->bearCMS->addons
                     $containerGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Container"));
                     $containerGroup->addOption($idPrefix . $name . "ContainerCSS", "css", '', [
                         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                        "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                        "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                         "cssOutput" => [
                             ["rule", $parentSelector . " ." . $className, "display:block;box-sizing:border-box;"],
                             ["selector", $parentSelector . " ." . $className]
@@ -199,7 +199,7 @@ $app->bearCMS->addons
                 $fieldOpenedListSingleSelectOptionText = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionText"));
                 $fieldOpenedListSingleSelectOptionText->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionTextCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]']
@@ -219,7 +219,7 @@ $app->bearCMS->addons
                 $fieldOpenedListSingleSelectOptionContainer = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListSingleSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"] > label', "display:inline-flex;flex-direction:row;"],
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"]', "display:flex;box-sizing:border-box;"],
@@ -256,7 +256,7 @@ $app->bearCMS->addons
                 $fieldOpenedListMultiSelectOptionText = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText"));
                 $fieldOpenedListMultiSelectOptionText->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionTextCSS", "css", '', [
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]']
@@ -276,7 +276,7 @@ $app->bearCMS->addons
                 $fieldOpenedListMultiSelectOptionContainer = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListMultiSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"] > label', "display:inline-flex;flex-direction:row;"],
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"]', "display:flex;box-sizing:border-box;"],
@@ -315,7 +315,7 @@ $app->bearCMS->addons
                 $submitButtonContainerGroup = $submitButton->addGroup(__("bearcms-forms.themes.options.Container"));
                 $submitButtonContainerGroup->addOption($idPrefix . "FormSubmitButtonContainerCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["rule", $parentSelector . " .bearcms-form-element-submit-button-container", "display:block;box-sizing:border-box;"],
                         ["selector", $parentSelector . " .bearcms-form-element-submit-button-container"]
