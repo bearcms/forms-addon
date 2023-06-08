@@ -44,16 +44,14 @@ $app->bearCMS->addons
                     return new \BearCMS\Forms();
                 });
 
-            \BearCMS\Internal\ElementsTypes::add('form', [
-                'componentSrc' => 'bearcms-form-element',
-                'componentFilename' => $context->dir . '/components/bearcmsFormElement.php',
-                'fields' => [
-                    [
-                        'id' => 'formID',
-                        'type' => 'string'
-                    ]
+            $type = new \BearCMS\Internal\ElementType('form', 'bearcms-form-element', $context->dir . '/components/bearcmsFormElement.php');
+            $type->properties = [
+                [
+                    'id' => 'formID',
+                    'type' => 'string'
                 ]
-            ]);
+            ];
+            \BearCMS\Internal\ElementsTypes::add($type);
 
             \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
