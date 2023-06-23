@@ -39,5 +39,6 @@ return [
     'bearcms-forms.form.field.submitButtonText' => 'Изпрати',
     'bearcms-forms.form.field.submitButtonWatingText' => 'Моля, изчакайте ...',
     'bearcms-forms.form.field.valueLengthProtection' => 'Информацията, която изпращате е прекалено голяма!',
-    'bearcms-forms.form.disabled' => 'В момента не можем да приемем попълнената информация!'
+    'bearcms-forms.form.disabled' => 'В момента не можем да приемем попълнената информация!',
+    'bearcms-forms.form.tooMany' => 'Изпратили сте информация твърде много пъти за кратко време. Моля, опитайте по-късно.',
 ];

@@ -39,5 +39,6 @@ return [
     'bearcms-forms.form.field.submitButtonText' => 'Submit',
     'bearcms-forms.form.field.submitButtonWatingText' => 'Please, wait ...',
     'bearcms-forms.form.field.valueLengthProtection' => 'The submitted information is too big!',
-    'bearcms-forms.form.disabled' => 'We cannot accept your submission now!'
+    'bearcms-forms.form.disabled' => 'We cannot accept your submission now!',
+    'bearcms-forms.form.tooMany' => 'You\'ve made too many submissions for a short time. Please, try again later.',
 ];

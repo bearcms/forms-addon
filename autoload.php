@@ -15,6 +15,7 @@ BearFramework\Addons::register('bearcms/forms-addon', __DIR__, [
         'bearframework/tasks-addon',
         'bearframework/emails-addon',
         'ivopetkov/form-bearframework-addon',
-        'ivopetkov/form-elements-bearframework-addon'
+        'ivopetkov/form-elements-bearframework-addon',
+        'ivopetkov/rate-limiter-bearframework-addon'
     ]
 ]);

@@ -23,7 +23,8 @@
         "bearframework/tasks-addon": "1.*",
         "bearframework/emails-addon": "1.*",
         "ivopetkov/form-bearframework-addon": "1.*",
-        "ivopetkov/form-elements-bearframework-addon": "2.*"
+        "ivopetkov/form-elements-bearframework-addon": "2.*",
+        "ivopetkov/rate-limiter-bearframework-addon": "1.*"
     },
     "require-dev": {
         "bearcms/addon-tests": "1.*"

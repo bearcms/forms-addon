@@ -110,6 +110,11 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
     if (Utilities::$disabled) {
         $form->throwError(__('bearcms-forms.form.disabled'));
     }
+
+    if (!$app->rateLimiter->logIP('bearcms-form', ['2/m', '20/h'])) {
+        $this->throwError(__('bearcms-forms.form.tooMany'));
+    }
+
     $resultJS = '';
     $response = [];
     foreach ($fields as $field) {
