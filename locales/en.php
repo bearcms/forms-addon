@@ -34,6 +34,8 @@ return [
     'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText' => 'Option text',
     'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionTextbox' => 'Custom option field',
     'bearcms-forms.themes.options.FieldClosedList' => 'Drop-down list',
+    'bearcms-forms.themes.options.FieldImage' => 'Image',
+    'bearcms-forms.themes.options.FieldFile' => 'File',
     'bearcms-forms.themes.options.SubmitButton' => 'Submit button',
     'bearcms-forms.form.field.otherListOption' => 'Other',
     'bearcms-forms.form.field.submitButtonText' => 'Submit',

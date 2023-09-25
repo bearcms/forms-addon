@@ -115,6 +115,8 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
         $this->throwError(__('bearcms-forms.form.tooMany'));
     }
 
+    $filesToCreate = [];
+
     $resultJS = '';
     $response = [];
     foreach ($fields as $field) {
@@ -170,6 +172,21 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
             if (isset($clientValues[$value])) {
                 $value = $clientValues[$value];
             }
+        } elseif ($type === 'image' || $type === 'file') {
+            $files = json_decode($fieldValue, true);
+            $value = [];
+            if (is_array($files)) {
+                foreach ($files as $file) {
+                    $extension = strtolower(pathinfo($file['value'], PATHINFO_EXTENSION));
+                    if (is_file($file['filename'])) {
+                        $newFilename = 'file' . (sizeof($filesToCreate) + 1) . ($extension !== '' ? '.' . $extension : '');
+                        $filesToCreate[$file['filename']] = $newFilename;
+                        $value[] = $newFilename;
+                    } else {
+                        throw new \Error('Uploaded file ' . $file['value'] . ' is missing!');
+                    }
+                }
+            }
         }
         $response[] = [
             'id' => $id,
@@ -183,6 +200,11 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
     $responseModel->date = new DateTime();
     $responseModel->value = $response;
     $responseID = $app->forms->responses->add($responseModel);
+
+    foreach ($filesToCreate as $tempFilename => $newFilename) {
+        copy($tempFilename, $app->forms->responses->getFilename($responseID, $newFilename));
+        unlink($tempFilename);
+    }
 
     $onSubmit = $formModel->onSubmit;
     if ($onSubmit === 'message') {
@@ -265,6 +287,14 @@ if (!empty($fields)) {
                 }
             }
             echo '</form-element-select>';
+            echo '</div>';
+        } elseif ($type === 'image') {
+            echo '<div class="bearcms-form-element-field-image-container">';
+            echo '<form-element-image ' . $fieldAttributes . ' maxSize="' . (10 * 1024 * 1024) . '"/>';
+            echo '</div>';
+        } elseif ($type === 'file') {
+            echo '<div class="bearcms-form-element-field-file-container">';
+            echo '<form-element-file ' . $fieldAttributes . ' maxSize="' . (10 * 1024 * 1024) . '"/>';
             echo '</div>';
         }
     }

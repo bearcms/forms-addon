@@ -34,6 +34,8 @@ return [
     'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText' => 'Текст на опцията',
     'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionTextbox' => 'Поле за друга опция',
     'bearcms-forms.themes.options.FieldClosedList' => 'Падащ списък с опции',
+    'bearcms-forms.themes.options.FieldImage' => 'Картинка',
+    'bearcms-forms.themes.options.FieldFile' => 'Файл',
     'bearcms-forms.themes.options.SubmitButton' => 'Бутон за изращане',
     'bearcms-forms.form.field.otherListOption' => 'Друг',
     'bearcms-forms.form.field.submitButtonText' => 'Изпрати',

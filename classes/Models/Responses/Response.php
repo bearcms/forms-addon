@@ -82,24 +82,49 @@ class Response extends Model
                 'type' => '?array',
                 'readonly' => true,
                 'init' => function () {
+                    $app = App::get();
+                    $id = $this->id;
+                    $responses = $app->forms->responses;
                     $valueDetails = [];
                     foreach ($this->value as $value) {
                         if (isset($value['value'])) {
                             $partValue = '';
+                            $partURLs = [];
+                            $addURL = array_search($value['type'], ['image', 'file']) !== false;
                             if (is_array($value['value'])) {
                                 if (!empty($value['value'])) {
                                     $partValue = implode(', ', $value['value']);
+                                    if ($addURL) {
+                                        foreach ($value['value'] as $_partValue) {
+                                            $partURLs[] = [
+                                                'value' => $_partValue,
+                                                'previewURL' => $responses->getURL($id, $_partValue),
+                                                'downloadURL' => $responses->getURL($id, $_partValue, ['download' => true]),
+                                            ];
+                                        }
+                                    }
                                 }
                             } elseif (is_string($value['value'])) {
                                 if (mb_strlen($value['value']) > 0) {
                                     $partValue = $value['value'];
+                                    if ($addURL) {
+                                        $partURLs[] = [
+                                            'value' => $partValue,
+                                            'previewURL' => $responses->getURL($id, $partValue),
+                                            'downloadURL' => $responses->getURL($id, $partValue, ['download' => true]),
+                                        ];
+                                    }
                                 }
                             }
                             if ($partValue !== '') {
-                                $valueDetails[] = [
+                                $details = [
                                     'name' => $value['name'],
                                     'value' => $partValue
                                 ];
+                                if (!empty($partURLs)) {
+                                    $details['urls'] = $partURLs;
+                                }
+                                $valueDetails[] = $details;
                             }
                         }
                     }

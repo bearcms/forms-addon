@@ -51,5 +51,59 @@ class Responses extends ModelsRepository
         });
     }
 
+    /**
+     * 
+     * @param string $responseID
+     * @param string $basename
+     * @return string
+     */
+    public function getFilename(string $responseID, string $basename): string
+    {
+        $parts = explode('-', $responseID);
+        return 'appdata://bearcms-forms/files/' . $parts[0] . '/' . $parts[1] . '-' . $basename;
+    }
+
+    /**
+     * 
+     * @param string $responseID
+     * @param string $basename
+     * @param array $options Available values: download=>true
+     * @return string
+     */
+    public function getURL(string $responseID, string $basename, array $options = []): string
+    {
+        $app = App::get();
+        $urlOptions = ['robotsNoIndex' => true];
+        if (isset($options['download']) && $options['download'] === true) {
+            $urlOptions['download'] = true;
+        }
+        return $app->assets->getURL($this->getFilename($responseID, $basename), $urlOptions);
+    }
+
+    /**
+     * 
+     * @param string $id
+     * @return void
+     */
+    function delete(string $id): void
+    {
+        $response = $this->get($id);
+        if ($response !== null) {
+            foreach ($response->value as $value) {
+                if (array_search($value['type'], ['image', 'file']) !== false) {
+                    if (isset($value['value'])) {
+                        foreach ($value['value'] as $filename) {
+                            $filenameToDelete = $this->getFilename($id, $filename);
+                            if (is_file($filenameToDelete)) {
+                                unlink($filenameToDelete);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        parent::delete($id);
+    }
+
     // todo optimize getList when filter by formID and sort by date
 }

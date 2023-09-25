@@ -20,6 +20,8 @@ $app->bearCMS->addons
             $context = $app->contexts->get(__DIR__);
             $context->assets
                 ->addDir('assets');
+            $app->assets
+                ->addDir('appdata://bearcms-forms/files/');
 
             $app->localization
                 ->addDictionary('en', function () use ($context) {
@@ -298,6 +300,36 @@ $app->bearCMS->addons
                 $addFieldLabel($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
                 $addFieldHint($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
                 $addFieldContainer($fieldClosedList, 'FormFieldClosedList', 'bearcms-form-element-field-closed-list-container');
+
+                // Image
+                $fieldImage = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldImage"));
+                $fieldImage->addOption($idPrefix . "FormFieldImageCSS", "css", '', [
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-image-container [data-form-element-component="button"]', "display:block;box-sizing:border-box;border:0;"],
+                        ["selector", $parentSelector . ' .bearcms-form-element-field-image-container [data-form-element-component="button"]']
+                    ],
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                ]);
+                $addFieldLabel($fieldImage, 'FormFieldImage', 'image', 'bearcms-form-element-field-image-container');
+                $addFieldHint($fieldImage, 'FormFieldImage', 'image', 'bearcms-form-element-field-image-container');
+                $addFieldContainer($fieldImage, 'FormFieldImage', 'bearcms-form-element-field-image-container');
+
+                // File
+                $fieldFile = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldFile"));
+                $fieldFile->addOption($idPrefix . "FormFieldFileCSS", "css", '', [
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
+                    "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-file-container [data-form-element-component="button"]', "display:block;box-sizing:border-box;border:0;"],
+                        ["selector", $parentSelector . ' .bearcms-form-element-field-file-container [data-form-element-component="button"]']
+                    ],
+                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                ]);
+                $addFieldLabel($fieldFile, 'FormFieldFile', 'file', 'bearcms-form-element-field-file-container');
+                $addFieldHint($fieldFile, 'FormFieldFile', 'file', 'bearcms-form-element-field-file-container');
+                $addFieldContainer($fieldFile, 'FormFieldFile', 'bearcms-form-element-field-file-container');
 
                 // Submit button
                 $submitButton = $groupForm->addGroup(__("bearcms-forms.themes.options.SubmitButton"));
