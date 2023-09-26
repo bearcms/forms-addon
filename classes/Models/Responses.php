@@ -59,8 +59,10 @@ class Responses extends ModelsRepository
      */
     public function getFilename(string $responseID, string $basename): string
     {
+        $app = App::get();
         $parts = explode('-', $responseID);
-        return 'appdata://bearcms-forms/files/' . $parts[0] . '/' . $parts[1] . '-' . $basename;
+        $dataKey = 'bearcms-forms/files/' . $parts[0] . '/' . $parts[1] . '-' . $basename;
+        return $app->data->getFilename($dataKey);
     }
 
     /**
@@ -82,6 +84,31 @@ class Responses extends ModelsRepository
 
     /**
      * 
+     * @param string $filename
+     * @return string
+     */
+    private function getFileDataKey(string $filename): string
+    {
+        return str_replace('appdata://', '', $filename);
+    }
+
+    /**
+     * 
+     * @param string $responseID
+     * @param string $basename
+     * @param string $source
+     * @return void
+     */
+    public function addFile(string $responseID, string $basename, string $source)
+    {
+        $newFilename = $this->getFilename($responseID, $basename);
+        copy($source, $newFilename);
+        $dataKey = $this->getFileDataKey($newFilename);
+        \BearCMS\Internal\Data\UploadsSize::add($dataKey, filesize($source));
+    }
+
+    /**
+     * 
      * @param string $id
      * @return void
      */
@@ -97,6 +124,8 @@ class Responses extends ModelsRepository
                             if (is_file($filenameToDelete)) {
                                 unlink($filenameToDelete);
                             }
+                            $dataKey = $this->getFileDataKey($filenameToDelete);
+                            \BearCMS\Internal\Data\UploadsSize::remove($dataKey);
                         }
                     }
                 }

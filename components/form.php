@@ -201,8 +201,8 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
     $responseModel->value = $response;
     $responseID = $app->forms->responses->add($responseModel);
 
-    foreach ($filesToCreate as $tempFilename => $newFilename) {
-        copy($tempFilename, $app->forms->responses->getFilename($responseID, $newFilename));
+    foreach ($filesToCreate as $tempFilename => $newBasename) {
+        $app->forms->responses->addFile($responseID, $newBasename, $tempFilename);
         unlink($tempFilename);
     }
 
