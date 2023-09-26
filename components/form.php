@@ -285,11 +285,11 @@ if (!empty($fields)) {
             echo '</div>';
         } elseif ($type === 'email') {
             echo '<div class="bearcms-form-element-field-email-container">';
-            echo '<form-element-textbox ' . $fieldAttributes . '/>';
+            echo '<form-element-textbox ' . $fieldAttributes . ' inputType="email"/>';
             echo '</div>';
         } elseif ($type === 'phone') {
             echo '<div class="bearcms-form-element-field-phone-container">';
-            echo '<form-element-textbox ' . $fieldAttributes . '/>';
+            echo '<form-element-textbox ' . $fieldAttributes . ' inputType="tel"/>';
             echo '</div>';
         } elseif ($type === 'openedList') {
             $listMultiSelect = isset($field['listMultiSelect']) && (int)$field['listMultiSelect'] > 0;
