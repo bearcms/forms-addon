@@ -43,4 +43,7 @@ return [
     'bearcms-forms.form.field.valueLengthProtection' => 'The submitted information is too big!',
     'bearcms-forms.form.disabled' => 'We cannot accept your submission now!',
     'bearcms-forms.form.tooMany' => 'You\'ve made too many submissions for a short time. Please, try again later.',
+    'bearcms-forms.form.fileTooBig' => 'The selected file is too big. The maximum allowed size is %s.',
+    'bearcms-forms.form.fileInvalidExtension' => 'The selected file format is not accepted.',
+    'bearcms-forms.form.cantUploadNow' => 'Cannot upload this file. Please, try again later.',
 ];

@@ -43,4 +43,7 @@ return [
     'bearcms-forms.form.field.valueLengthProtection' => 'Информацията, която изпращате е прекалено голяма!',
     'bearcms-forms.form.disabled' => 'В момента не можем да приемем попълнената информация!',
     'bearcms-forms.form.tooMany' => 'Изпратили сте информация твърде много пъти за кратко време. Моля, опитайте по-късно.',
+    'bearcms-forms.form.fileTooBig' => 'Избраният файл е твърде голям. Максималният размер е %s.',
+    'bearcms-forms.form.fileInvalidExtension' => 'Избраният файл е от вид, който не е разрешен.',
+    'bearcms-forms.form.cantUploadNow' => 'Избраният файл не може да се запази. Опитайте по-късно.',
 ];

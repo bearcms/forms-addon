@@ -15,6 +15,24 @@ $formID = (string)$component->formID;
 
 $formModel = $app->forms->forms->get($formID);
 
+$getFileFieldMaxSize = function (array $field) use ($app): int {
+    if (isset($field['maxSize']) && strlen($field['maxSize']) > 0) {
+        return (int)$app->localization->formatBytes($field['maxSize'], ['bytes']);
+    }
+    $max = \BearCMS\Internal\Data\Uploads::getMaxUploadSize();
+    if ($max !== null) {
+        return $max;
+    }
+    return 1 * 1024 * 1024;
+};
+
+$getFileAllowedExtensions = function (array $field): array {
+    if (isset($field['allowedExtensions']) && is_array($field['allowedExtensions'])) {
+        return $field['allowedExtensions'];
+    }
+    return [];
+};
+
 $fields = [];
 if ($formModel !== null) {
     foreach ($formModel->fields as $field) {
@@ -106,13 +124,13 @@ if ($formModel !== null) {
     }
 }
 
-$form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formModel) {
+$form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formModel, $getFileFieldMaxSize, $getFileAllowedExtensions) {
     if (Utilities::$disabled) {
         $form->throwError(__('bearcms-forms.form.disabled'));
     }
 
     if (!$app->rateLimiter->logIP('bearcms-form', ['2/m', '20/h'])) {
-        $this->throwError(__('bearcms-forms.form.tooMany'));
+        $form->throwError(__('bearcms-forms.form.tooMany'));
     }
 
     $filesToCreate = [];
@@ -177,13 +195,26 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
             $value = [];
             if (is_array($files)) {
                 foreach ($files as $file) {
-                    $extension = strtolower(pathinfo($file['value'], PATHINFO_EXTENSION));
                     if (is_file($file['filename'])) {
-                        $newFilename = 'file' . (sizeof($filesToCreate) + 1) . ($extension !== '' ? '.' . $extension : '');
-                        $filesToCreate[$file['filename']] = $newFilename;
-                        $value[] = $newFilename;
+                        $tempFilename = $file['filename'];
+                        $tempFileSize = filesize($tempFilename);
+                        $extension = strtolower(pathinfo($file['value'], PATHINFO_EXTENSION));
+                        $allowedExtensions = $getFileAllowedExtensions($field);
+                        if (!empty($allowedExtensions) && array_search($extension, $allowedExtensions) === false) {
+                            $form->throwElementError($fieldName, __('bearcms-forms.form.fileInvalidExtension'));
+                        }
+                        if ($tempFileSize > \BearCMS\Internal\Data\Uploads::getUploadsFreeSpace()) {
+                            $form->throwElementError($fieldName, __('bearcms-forms.form.cantUploadNow'));
+                        }
+                        $maxSize = $getFileFieldMaxSize($field);
+                        if ($tempFileSize > $maxSize) {
+                            $form->throwElementError($fieldName, sprintf(__('bearcms-forms.form.fileTooBig'), $app->localization->formatBytes($maxSize)));
+                        }
+                        $newBasename = 'file' . (sizeof($filesToCreate) + 1) . ($extension !== '' ? '.' . $extension : '');
+                        $filesToCreate[$tempFilename] = $newBasename;
+                        $value[] = $newBasename;
                     } else {
-                        throw new \Error('Uploaded file ' . $file['value'] . ' is missing!');
+                        $form->throwElementError($fieldName, __('bearcms-forms.form.cantUploadNow'));
                     }
                 }
             }
@@ -290,11 +321,11 @@ if (!empty($fields)) {
             echo '</div>';
         } elseif ($type === 'image') {
             echo '<div class="bearcms-form-element-field-image-container">';
-            echo '<form-element-image ' . $fieldAttributes . ' maxSize="' . (10 * 1024 * 1024) . '"/>';
+            echo '<form-element-image ' . $fieldAttributes . ' maxSize="' . $getFileFieldMaxSize($field) . '"/>';
             echo '</div>';
         } elseif ($type === 'file') {
             echo '<div class="bearcms-form-element-field-file-container">';
-            echo '<form-element-file ' . $fieldAttributes . ' maxSize="' . (10 * 1024 * 1024) . '"/>';
+            echo '<form-element-file ' . $fieldAttributes . ' maxSize="' . $getFileFieldMaxSize($field) . '" accept="' . join(',', $getFileAllowedExtensions($field)) . '"/>';
             echo '</div>';
         }
     }
