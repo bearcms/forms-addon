@@ -12,7 +12,7 @@ use BearCMS\Forms;
 /**
  * @runTestsInSeparateProcesses
  */
-class FormTest extends BearCMS\AddonTests\PHPUnitTestCase
+class FormsTest extends BearCMS\AddonTests\PHPUnitTestCase
 {
     /**
      * 
