@@ -57,6 +57,13 @@ $app->bearCMS->addons
 
             \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
+                $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
+                    "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]), // all but focus state
+                    "cssOutput" => [
+                        ["selector", $parentSelector . " .bearcms-form-element"]
+                    ]
+                ]);
 
                 $groupFormFields = $groupForm->addGroup(__("bearcms-forms.themes.options.FormFields"));
 
