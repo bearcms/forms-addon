@@ -59,7 +59,7 @@ $app->bearCMS->addons
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
                 $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
-                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]), // all but focus state
+                    "cssOptions" => array_diff(isset($details['cssOptions']) ? $details['cssOptions'] : [], ["*/focusState"]),
                     "cssOutput" => [
                         ["selector", $parentSelector . " .bearcms-form-element"]
                     ]
@@ -76,7 +76,7 @@ $app->bearCMS->addons
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]']
                         ],
-                        "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
+                        "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
                     ]);
                 };
                 $addFieldHint = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector) {
@@ -88,7 +88,7 @@ $app->bearCMS->addons
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]', "display:block;box-sizing:border-box;word-break:break-word;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]']
                         ],
-                        "defaultvalue" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
+                        "defaultValue" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
                     ]);
                 };
                 $addFieldContainer = function ($fieldGroup, string $name, string $className) use ($idPrefix, $parentSelector) {
@@ -100,7 +100,7 @@ $app->bearCMS->addons
                             ["rule", $parentSelector . " ." . $className, "display:block;box-sizing:border-box;"],
                             ["selector", $parentSelector . " ." . $className]
                         ],
-                        "defaultvalue" => '{"padding-bottom":"15px"}'
+                        "defaultValue" => '{"padding-bottom":"15px"}'
                     ]);
                 };
 
@@ -113,7 +113,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-text-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-text-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldText, 'FormFieldText', 'textbox', 'bearcms-form-element-field-text-container');
                 $addFieldHint($fieldText, 'FormFieldText', 'textbox', 'bearcms-form-element-field-text-container');
@@ -128,7 +128,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-textarea-container [data-form-element-type="textarea"] [data-form-element-component="textarea"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-textarea-container [data-form-element-type="textarea"] [data-form-element-component="textarea"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"140px","line-height":"24px","padding-left":"13px","padding-right":"13px","padding-top":"8px","padding-bottom":"8px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"140px","line-height":"24px","padding-left":"13px","padding-right":"13px","padding-top":"8px","padding-bottom":"8px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldTextarea, 'FormFieldTextarea', 'textarea', 'bearcms-form-element-field-textarea-container');
                 $addFieldHint($fieldTextarea, 'FormFieldTextarea', 'textarea', 'bearcms-form-element-field-textarea-container');
@@ -143,7 +143,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-name-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-name-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldName, 'FormFieldName', 'textbox', 'bearcms-form-element-field-name-container');
                 $addFieldHint($fieldName, 'FormFieldName', 'textbox', 'bearcms-form-element-field-name-container');
@@ -158,7 +158,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-email-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-email-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldEmail, 'FormFieldEmail', 'textbox', 'bearcms-form-element-field-email-container');
                 $addFieldHint($fieldEmail, 'FormFieldEmail', 'textbox', 'bearcms-form-element-field-email-container');
@@ -173,7 +173,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-phone-container [data-form-element-type="textbox"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-phone-container [data-form-element-type="textbox"] [data-form-element-component="input"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
                 $addFieldHint($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
@@ -192,7 +192,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]', "flex:0 0 auto;align-self:start;appearance:none;-webkit-appearance:none;box-sizing:border-box;margin:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]']
                     ],
-                    "defaultvalue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"50%","border-top-right-radius":"50%","border-bottom-left-radius":"50%","border-bottom-right-radius":"50%"}'
+                    "defaultValue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"50%","border-top-right-radius":"50%","border-bottom-left-radius":"50%","border-bottom-right-radius":"50%"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionButtonChecked = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionButtonChecked"));
                 $fieldOpenedListSingleSelectOptionButtonChecked->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionButtonCheckedCSS", "css", '', [
@@ -201,7 +201,7 @@ $app->bearCMS->addons
                     "cssOutput" => [
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-input"]:checked']
                     ],
-                    "defaultvalue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/radio.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"30px 30px"}'
+                    "defaultValue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/radio.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"30px 30px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionText = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionText"));
                 $fieldOpenedListSingleSelectOptionText->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionTextCSS", "css", '', [
@@ -211,7 +211,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionTextbox = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionTextbox"));
                 $fieldOpenedListSingleSelectOptionTextbox->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionTextboxCSS", "css", '', [
@@ -221,7 +221,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-textbox"]', "align-self:start;display:inline-block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-textbox"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListSingleSelectOptionContainer = $fieldOpenedListSingleSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListSingleSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListSingleSelectOptionContainerCSS", "css", '', [
@@ -232,7 +232,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"]', "display:flex;box-sizing:border-box;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option"]']
                     ],
-                    "defaultvalue" => '{"padding-bottom":"5px"}' // todo except the last one
+                    "defaultValue" => '{"padding-bottom":"5px"}' // todo except the last one
                 ]);
                 $addFieldContainer($fieldOpenedListSingleSelect, 'FormFieldOpenedListSingleSelect', 'bearcms-form-element-field-opened-list-single-select-container');
 
@@ -249,7 +249,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]', "flex:0 0 auto;align-self:start;appearance:none;-webkit-appearance:none;box-sizing:border-box;margin:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]']
                     ],
-                    "defaultvalue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"width":"40px","height":"40px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionButtonChecked = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionButtonChecked"));
                 $fieldOpenedListMultiSelectOptionButtonChecked->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionButtonCheckedCSS", "css", '', [
@@ -258,7 +258,7 @@ $app->bearCMS->addons
                     "cssOutput" => [
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-input"]:checked']
                     ],
-                    "defaultvalue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/checkbox.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"20px 20px"}'
+                    "defaultValue" => '{"background-image":"url(addon:bearcms\/forms-addon:assets\/checkbox.svg)","background-position":"center center","background-repeat":"no-repeat","background-size":"20px 20px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionText = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText"));
                 $fieldOpenedListMultiSelectOptionText->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionTextCSS", "css", '', [
@@ -268,7 +268,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionTextbox = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionTextbox"));
                 $fieldOpenedListMultiSelectOptionTextbox->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionTextboxCSS", "css", '', [
@@ -278,7 +278,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-textbox"]', "align-self:start;display:inline-block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-textbox"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"200px","height":"40px","line-height":"38px","margin-left":"5px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $fieldOpenedListMultiSelectOptionContainer = $fieldOpenedListMultiSelectOption->addGroup(__("bearcms-forms.themes.options.Container"));
                 $fieldOpenedListMultiSelectOptionContainer->addOption($idPrefix . "FormFieldOpenedListMultiSelectOptionContainerCSS", "css", '', [
@@ -289,7 +289,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"]', "display:flex;box-sizing:border-box;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option"]']
                     ],
-                    "defaultvalue" => '{"padding-bottom":"5px"}' // todo except the last one
+                    "defaultValue" => '{"padding-bottom":"5px"}' // todo except the last one
                 ]);
                 $addFieldContainer($fieldOpenedListMultiSelect, 'FormFieldOpenedListMultiSelect', 'bearcms-form-element-field-opened-list-multi-select-container');
 
@@ -302,7 +302,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-closed-list-container [data-form-element-type="select"] [data-form-element-component="select"]', "display:block;appearance:none;-webkit-appearance:none;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-closed-list-container [data-form-element-type="select"] [data-form-element-component="select"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
                 $addFieldHint($fieldClosedList, 'FormFieldClosedList', 'select', 'bearcms-form-element-field-closed-list-container');
@@ -317,7 +317,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-image-container [data-form-element-component="button"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-image-container [data-form-element-component="button"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldImage, 'FormFieldImage', 'image', 'bearcms-form-element-field-image-container');
                 $addFieldHint($fieldImage, 'FormFieldImage', 'image', 'bearcms-form-element-field-image-container');
@@ -332,7 +332,7 @@ $app->bearCMS->addons
                         ["rule", $parentSelector . ' .bearcms-form-element-field-file-container [data-form-element-component="button"]', "display:block;box-sizing:border-box;border:0;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-file-container [data-form-element-component="button"]']
                     ],
-                    "defaultvalue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $addFieldLabel($fieldFile, 'FormFieldFile', 'file', 'bearcms-form-element-field-file-container');
                 $addFieldHint($fieldFile, 'FormFieldFile', 'file', 'bearcms-form-element-field-file-container');
@@ -344,10 +344,11 @@ $app->bearCMS->addons
                     "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
                     "cssOptions" => isset($details['cssOptions']) ? $details['cssOptions'] : [],
                     "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-submit-button-container [data-form-element-type="submit-button"]', "display:flex;"],
                         ["rule", $parentSelector . ' .bearcms-form-element-submit-button-container [data-form-element-type="submit-button"] [data-form-element-component="button"]', "box-sizing:border-box;cursor:pointer;display:inline-block;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-submit-button-container [data-form-element-type="submit-button"] [data-form-element-component="button"]']
                     ],
-                    "defaultvalue" => '{"background-color":"#333333","font-size":"14px","font-family":"Arial","height":"40px","line-height":"40px","padding-left":"13px","padding-right":"13px","color":"#ffffff","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                    "defaultValue" => '{"background-color":"#333333","font-size":"14px","font-family":"Arial","height":"40px","line-height":"40px","padding-left":"13px","padding-right":"13px","color":"#ffffff","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
                 ]);
                 $submitButtonContainerGroup = $submitButton->addGroup(__("bearcms-forms.themes.options.Container"));
                 $submitButtonContainerGroup->addOption($idPrefix . "FormSubmitButtonContainerCSS", "css", '', [
