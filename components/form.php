@@ -243,7 +243,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
     } elseif ($onSubmit === 'redirect') {
         $resultJS = 'window.location.assign(' . json_encode($formModel->onSubmitRedirectURL, JSON_THROW_ON_ERROR) . ');';
     } else {
-        $resultJS = 'alert("Successfully submitted!");';
+        $resultJS = 'alert("' . __('bearcms-forms.form.submitSuccess') . '");';
     }
 
     Utilities::addNewResponseNotificationsTask($formModel, $responseID);
