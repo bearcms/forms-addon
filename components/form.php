@@ -241,7 +241,12 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
     if ($onSubmit === 'message') {
         $resultJS = 'alert(' . json_encode($formModel->onSubmitMessage, JSON_THROW_ON_ERROR) . ');';
     } elseif ($onSubmit === 'redirect') {
-        $resultJS = 'window.location.assign(' . json_encode($formModel->onSubmitRedirectURL, JSON_THROW_ON_ERROR) . ');';
+        $onSubmitURL = $formModel->onSubmitRedirectURL;
+        if (strpos($onSubmitURL, 'js:') === 0) {
+            $resultJS = substr($onSubmitURL, 3);
+        } else {
+            $resultJS = 'window.location.assign(' . json_encode($onSubmitURL, JSON_THROW_ON_ERROR) . ');';
+        }
     } else {
         $resultJS = 'alert("' . __('bearcms-forms.form.submitSuccess') . '");';
     }
