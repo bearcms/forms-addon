@@ -276,6 +276,9 @@ if (!empty($fields)) {
         if (isset($field['hint']) && mb_strlen($field['hint']) > 0) {
             $fieldAttributes .= ' hint="' . htmlentities($field['hint']) . '"';
         }
+        if (isset($field['placeholder']) && mb_strlen($field['placeholder']) > 0) {
+            $fieldAttributes .= ' placeholder="' . htmlentities($field['placeholder']) . '"';
+        }
         if ($type === 'text') {
             echo '<div class="bearcms-form-element-field-text-container">';
             echo '<form-element-textbox ' . $fieldAttributes . '/>';
