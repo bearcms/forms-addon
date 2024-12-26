@@ -46,5 +46,8 @@ return [
     'bearcms-forms.form.fileTooBig' => 'Избраният файл е твърде голям. Максималният размер е %s.',
     'bearcms-forms.form.fileInvalidExtension' => 'Избраният файл е от вид, който не е разрешен.',
     'bearcms-forms.form.cantUploadNow' => 'Избраният файл не може да се запази. Опитайте по-късно.',
-    'bearcms-forms.form.submitSuccess' => 'Данните са изпратени успешно!'
+    'bearcms-forms.form.submitSuccess' => 'Данните са изпратени успешно!',
+    'bearcms-forms.dataExport.serialNumber' => 'Пореден номер',
+    'bearcms-forms.dataExport.form' => 'Форма',
+    'bearcms-forms.dataExport.date' => 'Дата',
 ];

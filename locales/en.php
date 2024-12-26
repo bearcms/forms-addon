@@ -46,5 +46,8 @@ return [
     'bearcms-forms.form.fileTooBig' => 'The selected file is too big. The maximum allowed size is %s.',
     'bearcms-forms.form.fileInvalidExtension' => 'The selected file format is not accepted.',
     'bearcms-forms.form.cantUploadNow' => 'Cannot upload this file. Please, try again later.',
-    'bearcms-forms.form.submitSuccess' => 'Successfully submitted!'
+    'bearcms-forms.form.submitSuccess' => 'Successfully submitted!',
+    'bearcms-forms.dataExport.serialNumber' => 'Serial number',
+    'bearcms-forms.dataExport.form' => 'Form',
+    'bearcms-forms.dataExport.date' => 'Date',
 ];

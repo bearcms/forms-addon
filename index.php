@@ -431,6 +431,41 @@ $app->bearCMS->addons
                 return $app->forms->responses->exists($data['id']);
             });
 
+            $formResponseToHumanReadableArray = function (BearCMS\Forms\Models\Responses\Response $response) use ($app) {
+                $result = [];
+                $getNumberFromID = function (string $id): string {
+                    $idParts = explode('-', $id);
+                    return (string)(int)$idParts[1];
+                };
+                $result[__('bearcms-forms.dataExport.serialNumber')] = $getNumberFromID($response->id);
+                $result[__('bearcms-forms.dataExport.form')] = (string)$response->formName;
+                $result[__('bearcms-forms.dataExport.date')] = $app->localization->formatDate($response->date, ['date', 'time', 'year']);
+                foreach ($response->valueDetails as $value) {
+                    $result[$value['name']] = $value['value'];
+                }
+                return $result;
+            };
+
+            \BearCMS\Internal\DataExport::addHandler('formsResponses', function (array $options) use ($app, $formResponseToHumanReadableArray) {
+                $list = $app->forms->responses->getList();
+                if (isset($options['formID'])) {
+                    $list->filterBy('formID', $options['formID']);
+                }
+                $result = [];
+                foreach ($list as $item) {
+                    $result[] = $formResponseToHumanReadableArray($item);
+                }
+                return ['filename' => 'form-responses', 'data' => $result, 'multiple' => true];
+            });
+
+            \BearCMS\Internal\DataExport::addHandler('formsResponse', function (array $options) use ($app, $formResponseToHumanReadableArray) {
+                $id = $options['id'];
+                $item = $app->forms->responses->get($id);
+                if ($item !== null) {
+                    return ['filename' => 'form-response-' . $id, 'data' => $formResponseToHumanReadableArray($item)];
+                }
+            });
+
             // Notifications
             $app->tasks
                 ->define('bearcms-forms-send-new-response-notification', function ($data) {
