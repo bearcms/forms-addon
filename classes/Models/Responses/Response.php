@@ -20,6 +20,7 @@ use BearFramework\Models\Model;
  * @property-read string|null $formName
  * @property-read string|null $valueSummary
  * @property-read array|null $valueDetails
+ * @property-read string $internalValueTextSearch
  */
 class Response extends Model
 {
@@ -129,6 +130,27 @@ class Response extends Model
                         }
                     }
                     return $valueDetails;
+                }
+            ])
+            ->defineProperty('internalValueTextSearch', [
+                'type' => 'string',
+                'readonly' => true,
+                'init' => function () {
+                    $result = [];
+                    foreach ($this->value as $value) {
+                        if (isset($value['value'])) {
+                            if (is_array($value['value'])) {
+                                if (!empty($value['value'])) {
+                                    $result[] = $value['value'];
+                                }
+                            } elseif (is_string($value['value'])) {
+                                if (mb_strlen($value['value']) > 0) {
+                                    $result[] = $value['value'];
+                                }
+                            }
+                        }
+                    }
+                    return implode(" ", $result);
                 }
             ]);
     }

@@ -373,7 +373,9 @@ $app->bearCMS->addons
             });
 
             \BearCMS\Internal\ServerCommands::add('formsFormsGetCount', function (array $data) use ($app) {
-                return $app->forms->forms->getList()->count();
+                $list = $app->forms->forms->getList();
+                $list = \BearCMS\Internal\ServerCommands::applyListModifications($list, $data['modifications']);
+                return $list->count();
             });
 
             \BearCMS\Internal\ServerCommands::add('formsFormsGet', function (array $data) use ($app) {
