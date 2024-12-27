@@ -141,7 +141,7 @@ class Response extends Model
                         if (isset($value['value'])) {
                             if (is_array($value['value'])) {
                                 if (!empty($value['value'])) {
-                                    $result[] = $value['value'];
+                                    $result[] = implode(', ', $value['value']);
                                 }
                             } elseif (is_string($value['value'])) {
                                 if (mb_strlen($value['value']) > 0) {
