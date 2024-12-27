@@ -57,6 +57,15 @@ class Form extends Model
             ->defineProperty('notifyEmails', [
                 'type' => '?string'
             ])
+            ->defineProperty('notifyEmailsAddReplyTo', [
+                'type' => '?bool',
+                'init' => function () {
+                    return false;
+                }
+            ])
+            ->defineProperty('notifyEmailsSubject', [
+                'type' => '?string'
+            ])
             ->defineProperty('lastChangeDate', [
                 'type' => '?DateTime'
             ])

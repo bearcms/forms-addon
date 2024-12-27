@@ -79,16 +79,30 @@ class Utilities
                             $email = $app->emails->make();
                             $email->sender->email = $senderEmail;
                             $email->recipients->add($recipient);
-                            $email->subject = sprintf(__('bearcms-forms.emails.notifyEmail.subject'), $formName);
+                            $subject = (string)$form->notifyEmailsSubject;
+                            $email->subject = isset($subject[0]) ? $subject : sprintf(__('bearcms-forms.emails.notifyEmail.subject'), $formName);
+
+                            if ($form->notifyEmailsAddReplyTo) {
+                                foreach ($response->value as $value) {
+                                    if (isset($value['value'], $value['type']) && $value['type'] === 'email' && strlen($value['value']) > 0) {
+                                        if (filter_var($value['value'], FILTER_VALIDATE_EMAIL)) {
+                                            $email->replyToRecipients->add($value['value']);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
 
                             $html = '<html><body>';
 
-                            $html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Form') . ':</strong><br>';
-                            $html .= htmlspecialchars($formName);
-                            $html .= '<br><br>';
+                            // $html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Form') . ':</strong><br>';
+                            // $html .= htmlspecialchars($formName);
+                            // $html .= '<br><br>';
+
+                            echo __('bearcms-forms.emails.notifyEmail.Date') . ':<br>' . $app->localization->formatDate($response->date, ['date', 'time', 'year']);
 
                             if (isset($response->valueDetails)) {
-                                $html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Response') . ':</strong><br>';
+                                //$html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Response') . ':</strong><br>';
                                 $html .= htmlspecialchars($formName);
                                 foreach ($response->valueDetails as $value) {
                                     $html .= '<br><br>' . htmlspecialchars($value['name']) . ':<br>' . htmlspecialchars($value['value']);

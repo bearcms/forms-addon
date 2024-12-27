@@ -8,8 +8,9 @@
  */
 return [
     'bearcms-forms.emails.notifyEmail.subject' => 'Нов отговор на формата %s',
-    'bearcms-forms.emails.notifyEmail.Form' => 'Форма',
-    'bearcms-forms.emails.notifyEmail.Response' => 'Отговор',
+    //'bearcms-forms.emails.notifyEmail.Form' => 'Форма',
+    //'bearcms-forms.emails.notifyEmail.Response' => 'Отговор',
+    'bearcms-forms.emails.notifyEmail.Date' => 'Дата',
     'bearcms-forms.emails.notification.title' => 'Нов отговор на форма',
     'bearcms-forms.themes.options.Form' => 'Форма',
     'bearcms-forms.themes.options.FormFields' => 'Полета',

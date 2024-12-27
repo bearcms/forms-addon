@@ -8,8 +8,9 @@
  */
 return [
     'bearcms-forms.emails.notifyEmail.subject' => 'New response at %s',
-    'bearcms-forms.emails.notifyEmail.Form' => 'Form',
-    'bearcms-forms.emails.notifyEmail.Response' => 'Response',
+    //'bearcms-forms.emails.notifyEmail.Form' => 'Form',
+    //'bearcms-forms.emails.notifyEmail.Response' => 'Response',
+    'bearcms-forms.emails.notifyEmail.Date' => 'Date',
     'bearcms-forms.emails.notification.title' => 'New form response',
     'bearcms-forms.themes.options.Form' => 'Form',
     'bearcms-forms.themes.options.FormFields' => 'Fields',
