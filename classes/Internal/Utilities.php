@@ -99,13 +99,12 @@ class Utilities
                             // $html .= htmlspecialchars($formName);
                             // $html .= '<br><br>';
 
-                            echo __('bearcms-forms.emails.notifyEmail.Date') . ':<br>' . $app->localization->formatDate($response->date, ['date', 'time', 'year']);
+                            $html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Date') . '</strong>:<br>' . $app->localization->formatDate($response->date, ['date', 'time', 'year']);
 
                             if (isset($response->valueDetails)) {
                                 //$html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Response') . ':</strong><br>';
-                                $html .= htmlspecialchars($formName);
                                 foreach ($response->valueDetails as $value) {
-                                    $html .= '<br><br>' . htmlspecialchars($value['name']) . ':<br>' . htmlspecialchars($value['value']);
+                                    $html .= '<br><br><strong>' . htmlspecialchars($value['name']) . '</strong>:<br>' . htmlspecialchars($value['value']);
                                 }
                             }
 
