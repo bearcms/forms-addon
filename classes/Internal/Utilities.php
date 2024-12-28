@@ -104,7 +104,7 @@ class Utilities
                             if (isset($response->valueDetails)) {
                                 //$html .= '<strong>' . __('bearcms-forms.emails.notifyEmail.Response') . ':</strong><br>';
                                 foreach ($response->valueDetails as $value) {
-                                    $html .= '<br><br><strong>' . htmlspecialchars($value['name']) . '</strong>:<br>' . htmlspecialchars($value['value']);
+                                    $html .= '<br><br><strong>' . htmlspecialchars($value['name']) . '</strong>:<br>' . nl2br(htmlspecialchars($value['value']));
                                 }
                             }
 
