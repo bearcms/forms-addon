@@ -90,7 +90,7 @@ if ($formModel !== null) {
                     }
                     $notValidValues = array_values($notValidValues);
                     if ($listAddOption) {
-                        if (sizeof($notValidValues) === 1) {
+                        if (count($notValidValues) === 1) {
                             return true;
                         }
                     }
@@ -162,7 +162,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
             $listOptions = isset($field['listOptions']) && is_array($field['listOptions']) ? $field['listOptions'] : [];
             $value = $fieldValue;
             $clientValues = [];
-            foreach ($listOptions as $listOptionIndex => $listOption) {
+            foreach ($listOptions as $listOption) {
                 $clientValues[md5($listOption)] = $listOption;
             }
             if ($listMultiSelect) {
@@ -184,7 +184,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
             $value = $fieldValue;
             $listOptions = isset($field['listOptions']) && is_array($field['listOptions']) ? $field['listOptions'] : [];
             $clientValues = [];
-            foreach ($listOptions as $listOptionIndex => $listOption) {
+            foreach ($listOptions as $listOption) {
                 $clientValues[md5($listOption)] = $listOption;
             }
             if (isset($clientValues[$value])) {
@@ -210,7 +210,7 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
                         if ($tempFileSize > $maxSize) {
                             $form->throwElementError($fieldName, sprintf(__('bearcms-forms.form.fileTooBig'), $app->localization->formatBytes($maxSize)));
                         }
-                        $newBasename = 'file' . (sizeof($filesToCreate) + 1) . ($extension !== '' ? '.' . $extension : '');
+                        $newBasename = 'file' . (count($filesToCreate) + 1) . ($extension !== '' ? '.' . $extension : '');
                         $filesToCreate[$tempFilename] = $newBasename;
                         $value[] = $newBasename;
                     } else {
@@ -333,7 +333,7 @@ if (!empty($fields)) {
             echo '</div>';
         } elseif ($type === 'file') {
             echo '<div class="bearcms-form-element-field-file-container">';
-            echo '<form-element-file ' . $fieldAttributes . ' maxSize="' . $getFileFieldMaxSize($field) . '" accept="' . join(',', $getFileAllowedExtensions($field)) . '"/>';
+            echo '<form-element-file ' . $fieldAttributes . ' maxSize="' . $getFileFieldMaxSize($field) . '" accept="' . implode(',', $getFileAllowedExtensions($field)) . '"/>';
             echo '</div>';
         }
     }

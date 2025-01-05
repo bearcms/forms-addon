@@ -13,8 +13,8 @@ use BearFramework\App;
 $app = App::get();
 
 $app->bearCMS->addons
-    ->register('bearcms/forms-addon', function (\BearCMS\Addons\Addon $addon) use ($app) {
-        $addon->initialize = function (array $options) use ($app) {
+    ->register('bearcms/forms-addon', function (\BearCMS\Addons\Addon $addon) use ($app): void {
+        $addon->initialize = function (array $options) use ($app): void {
             $disabled = isset($options['disabled']) ? (bool)$options['disabled'] : false;
 
             $context = $app->contexts->get(__DIR__);
@@ -56,7 +56,7 @@ $app->bearCMS->addons
             $type->canImportExport = true;
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details) {
+            \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details): void {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
                 $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
@@ -68,7 +68,7 @@ $app->bearCMS->addons
 
                 $groupFormFields = $groupForm->addGroup(__("bearcms-forms.themes.options.FormFields"));
 
-                $addFieldLabel = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector) {
+                $addFieldLabel = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector): void {
                     $labelGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Label"));
                     $labelGroup->addOption($idPrefix . $name . "LabelCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -80,7 +80,7 @@ $app->bearCMS->addons
                         "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
                     ]);
                 };
-                $addFieldHint = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector) {
+                $addFieldHint = function ($fieldGroup, string $name, string $attributeValue, string $containerClassName) use ($idPrefix, $parentSelector): void {
                     $hintGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Hint"));
                     $hintGroup->addOption($idPrefix . $name . "HintCSS", "css", '', [
                         "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -92,7 +92,7 @@ $app->bearCMS->addons
                         "defaultValue" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
                     ]);
                 };
-                $addFieldContainer = function ($fieldGroup, string $name, string $className) use ($idPrefix, $parentSelector) {
+                $addFieldContainer = function ($fieldGroup, string $name, string $className) use ($idPrefix, $parentSelector): void {
                     $containerGroup = $fieldGroup->addGroup(__("bearcms-forms.themes.options.Container"));
                     $containerGroup->addOption($idPrefix . $name . "ContainerCSS", "css", '', [
                         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -386,18 +386,18 @@ $app->bearCMS->addons
                 return null;
             });
 
-            \BearCMS\Internal\ServerCommands::add('formsFormsSet', function (array $data) use ($app) {
+            \BearCMS\Internal\ServerCommands::add('formsFormsSet', function (array $data) use ($app): void {
                 $model = $app->forms->forms->makeFromArray($data['data']);
                 $model->id = $data['id'];
                 $app->forms->forms->set($model);
             });
 
-            \BearCMS\Internal\ServerCommands::add('formsFormsAdd', function (array $data) use ($app) {
+            \BearCMS\Internal\ServerCommands::add('formsFormsAdd', function (array $data) use ($app): void {
                 $model = $app->forms->forms->makeFromArray($data['data']);
                 $app->forms->forms->add($model);
             });
 
-            \BearCMS\Internal\ServerCommands::add('formsFormsDelete', function (array $data) use ($app) {
+            \BearCMS\Internal\ServerCommands::add('formsFormsDelete', function (array $data) use ($app): void {
                 $app->forms->forms->delete($data['id']);
             });
 
@@ -425,7 +425,7 @@ $app->bearCMS->addons
                 return null;
             });
 
-            \BearCMS\Internal\ServerCommands::add('formsResponsesDelete', function (array $data) use ($app) {
+            \BearCMS\Internal\ServerCommands::add('formsResponsesDelete', function (array $data) use ($app): void {
                 $app->forms->responses->delete($data['id']);
             });
 
@@ -470,7 +470,7 @@ $app->bearCMS->addons
 
             // Notifications
             $app->tasks
-                ->define('bearcms-forms-send-new-response-notification', function ($data) {
+                ->define('bearcms-forms-send-new-response-notification', function ($data): void {
                     Utilities::sendNewResponseNotifications($data['responseID']);
                 });
         };

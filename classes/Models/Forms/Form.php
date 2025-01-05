@@ -130,7 +130,7 @@ class Form extends Model
                         foreach ($responses as $response) {
                             foreach ($response->value as $value) {
                                 if (isset($value['value'])) {
-                                    $addOptionValue = function ($optionValue) use ($value, &$responsesSummary) {
+                                    $addOptionValue = function ($optionValue) use ($value, &$responsesSummary): void {
                                         $valueKey = md5($value['name']);
                                         if (!isset($responsesSummary[$valueKey])) {
                                             $responsesSummary[$valueKey] = [
