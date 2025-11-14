@@ -56,7 +56,7 @@ $app->bearCMS->addons
             $type->canImportExport = true;
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['form'] = function ($options, $idPrefix, $parentSelector, $context, $details): void {
+            \BearCMS\Internal\Themes::$elementsOptions['form'] = ['v1', function ($options, $idPrefix, $parentSelector, $context, $details): void {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
                 $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
@@ -75,6 +75,7 @@ $app->bearCMS->addons
                         "cssOptions" => ["*/hoverState", "*/activeState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]', "display:block;box-sizing:border-box;word-break:break-word;"],
+                            ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"] a', "color:inherit;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="label"]']
                         ],
                         "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"160%","color":"#000","padding-bottom":"4px"}'
@@ -87,6 +88,7 @@ $app->bearCMS->addons
                         "cssOptions" => ["*/hoverState", "*/activeState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
                         "cssOutput" => [
                             ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]', "display:block;box-sizing:border-box;word-break:break-word;"],
+                            ["rule", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"] a', "color:inherit;"],
                             ["selector", $parentSelector . ' .' . $containerClassName . ' [data-form-element-type="' . $attributeValue . '"] [data-form-element-component="hint"]']
                         ],
                         "defaultValue" => '{"font-family":"Arial","font-size":"12px","line-height":"140%","color":"#000","padding-bottom":"7px"}'
@@ -210,6 +212,7 @@ $app->bearCMS->addons
                     "cssOptions" => ["*/hoverState", "*/activeState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"] a', "color:inherit;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-single-select-container [data-form-element-type="radio-list"] [data-form-element-component="radio-list-option-label"]']
                     ],
                     "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
@@ -362,7 +365,7 @@ $app->bearCMS->addons
                 ]);
 
                 //
-            };
+            }];
 
             // Forms
 

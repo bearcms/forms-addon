@@ -272,9 +272,28 @@ if (!empty($fields)) {
 
         $fieldName = 'form-field-' . $id;
 
-        $fieldAttributes = 'name="' . htmlentities($fieldName) . '" label="' . htmlentities($name) . '"';
+        $processTextValue = function (string $value) {
+            $value = htmlspecialchars($value);
+            $openedLinkExpression = '/\{link=([^\}]+)\}/';
+            $openedLinksCount = preg_match_all($openedLinkExpression, $value, $matches);
+            $closedLinksCount = preg_match_all('/\{\/link\}/', $value, $matches);
+            if ($openedLinksCount > 0 && $openedLinksCount === $closedLinksCount) {
+                $value = preg_replace_callback(
+                    $openedLinkExpression,
+                    function ($matches) {
+                        $url = htmlspecialchars($matches[1]);
+                        return '<a href="' . $url . '" target="_blank" rel="noopener noreferrer">';
+                    },
+                    $value
+                );
+                $value = str_replace('{/link}', '</a>', $value);
+            }
+            return $value . $openedLinksCount . $closedLinksCount;
+        };
+
+        $fieldAttributes = 'name="' . htmlentities($fieldName) . '" labelHTML="' . htmlentities($processTextValue($name)) . '"';
         if (isset($field['hint']) && mb_strlen($field['hint']) > 0) {
-            $fieldAttributes .= ' hint="' . htmlentities($field['hint']) . '"';
+            $fieldAttributes .= ' hintHTML="' . htmlentities($processTextValue($field['hint'])) . '"';
         }
         if (isset($field['placeholder']) && mb_strlen($field['placeholder']) > 0) {
             $fieldAttributes .= ' placeholder="' . htmlentities($field['placeholder']) . '"';
@@ -307,7 +326,7 @@ if (!empty($fields)) {
             echo '<div class="' . ($listMultiSelect ? 'bearcms-form-element-field-opened-list-multi-select-container' : 'bearcms-form-element-field-opened-list-single-select-container') . '">';
             echo '<' . $tagName . ' ' . $fieldAttributes . '>';
             foreach ($listOptions as $listOption) {
-                echo '<option value="' . md5($listOption) . '">' . htmlspecialchars($listOption) . '</option>';
+                echo '<option value="' . md5($listOption) . '">' . $processTextValue($listOption) . '</option>';
             }
             if ($listAddOption) {
                 echo '<option type="textbox" placeholder="' . htmlentities(__('bearcms-forms.form.field.otherListOption')) . '"></option>';
@@ -321,7 +340,7 @@ if (!empty($fields)) {
                 echo '<option value=""></option>';
                 foreach ($field['listOptions'] as $listOption) {
                     if (is_string($listOption)) {
-                        echo '<option value="' . htmlentities(md5($listOption)) . '">' . htmlspecialchars($listOption) . '</option>';
+                        echo '<option value="' . htmlentities(md5($listOption)) . '">' . $processTextValue($listOption) . '</option>';
                     }
                 }
             }
