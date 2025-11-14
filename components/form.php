@@ -288,7 +288,7 @@ if (!empty($fields)) {
                 );
                 $value = str_replace('{/link}', '</a>', $value);
             }
-            return $value . $openedLinksCount . $closedLinksCount;
+            return $value;
         };
 
         $fieldAttributes = 'name="' . htmlentities($fieldName) . '" labelHTML="' . htmlentities($processTextValue($name)) . '"';
