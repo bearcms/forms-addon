@@ -56,7 +56,7 @@ $app->bearCMS->addons
             $type->canImportExport = true;
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['form'] = ['v1', function ($options, $idPrefix, $parentSelector, $context, $details): void {
+            \BearCMS\Internal\Themes::$elementsOptions['form'] = ['v2', function ($options, $idPrefix, $parentSelector, $context, $details): void {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
                 $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
@@ -270,6 +270,7 @@ $app->bearCMS->addons
                     "cssOptions" => ["*/hoverState", "*/activeState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
                     "cssOutput" => [
                         ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]', "align-self:start;display:block;box-sizing:border-box;word-break:break-word;"],
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"] a', "color:inherit;"],
                         ["selector", $parentSelector . ' .bearcms-form-element-field-opened-list-multi-select-container [data-form-element-type="checkbox-list"] [data-form-element-component="checkbox-list-option-label"]']
                     ],
                     "defaultValue" => '{"font-family":"Arial","font-size":"14px","line-height":"24px","color":"#000","padding-top":"8px","padding-left":"10px"}'
