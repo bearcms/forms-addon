@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * Forms addon for Bear CMS
+ * https://github.com/bearcms/forms-addon
+ * Copyright (c) Amplilabs Ltd.
+ * Free to use under the MIT license.
+ */
+return [
+    'bearcms-forms.emails.notifyEmail.subject' => 'Răspuns nou la %s',
+    'bearcms-forms.emails.notifyEmail.Date' => 'Dată',
+    'bearcms-forms.emails.notification.title' => 'Răspuns nou formular',
+    'bearcms-forms.themes.options.Form' => 'Formular',
+    'bearcms-forms.themes.options.FormFields' => 'Câmpuri',
+    'bearcms-forms.themes.options.Container' => 'Container',
+    'bearcms-forms.themes.options.Label' => 'Nume',
+    'bearcms-forms.themes.options.Hint' => 'Descriere',
+    'bearcms-forms.themes.options.FieldText' => 'Text',
+    'bearcms-forms.themes.options.FieldTextarea' => 'Text multilinie',
+    'bearcms-forms.themes.options.FieldName' => 'Nume',
+    'bearcms-forms.themes.options.FieldEmail' => 'Email',
+    'bearcms-forms.themes.options.FieldPhone' => 'Telefon',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelect' => 'Listă opțiuni cu selecție unică',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelectOption' => 'Opțiune',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionButton' => 'Buton',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionButtonChecked' => 'Buton (selectat)',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionText' => 'Text opțiune',
+    'bearcms-forms.themes.options.FieldOpenedListSingleSelectOptionTextbox' => 'Câmp opțiune personalizată',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelect' => 'Listă opțiuni cu selecție multiplă',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelectOption' => 'Opțiune',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionButton' => 'Buton',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionButtonChecked' => 'Buton (selectat)',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionText' => 'Text opțiune',
+    'bearcms-forms.themes.options.FieldOpenedListMultiSelectOptionTextbox' => 'Câmp opțiune personalizată',
+    'bearcms-forms.themes.options.FieldClosedList' => 'Listă derulantă (drop-down)',
+    'bearcms-forms.themes.options.FieldImage' => 'Imagine',
+    'bearcms-forms.themes.options.FieldFile' => 'Fișier',
+    'bearcms-forms.themes.options.SubmitButton' => 'Buton trimitere',
+    'bearcms-forms.form.field.otherListOption' => 'Altul',
+    'bearcms-forms.form.field.submitButtonText' => 'Trimite',
+    'bearcms-forms.form.field.submitButtonWatingText' => 'Te rugăm să aștepți...',
+    'bearcms-forms.form.field.valueLengthProtection' => 'Informația trimisă este prea mare!',
+    'bearcms-forms.form.disabled' => 'Nu putem accepta trimiterea ta în acest moment!',
+    'bearcms-forms.form.tooMany' => 'Ai efectuat prea multe trimiteri într-un timp scurt. Te rugăm să încerci din nou mai târziu.',
+    'bearcms-forms.form.fileTooBig' => 'Fișierul selectat este prea mare. Dimensiunea maximă permisă este %s.',
+    'bearcms-forms.form.fileInvalidExtension' => 'Formatul fișierului selectat nu este acceptat.',
+    'bearcms-forms.form.cantUploadNow' => 'Acest fișier nu poate fi încărcat. Te rugăm să încerci din nou mai târziu.',
+    'bearcms-forms.form.submitSuccess' => 'Trimis cu succes!',
+    'bearcms-forms.dataExport.serialNumber' => 'Număr de serie',
+    'bearcms-forms.dataExport.form' => 'Formular',
+    'bearcms-forms.dataExport.date' => 'Dată',
+];
