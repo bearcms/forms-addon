@@ -157,6 +157,12 @@ $form->onSubmit = function ($values) use (&$form, $app, $fields, $formID, $formM
             $value = $fieldValue;
         } elseif ($type === 'phone') {
             $value = $fieldValue;
+        } elseif ($type === 'date') {
+            $value = $fieldValue;
+        } elseif ($type === 'time') {
+            $value = $fieldValue;
+        } elseif ($type === 'datetime') {
+            $value = $fieldValue;
         } elseif ($type === 'openedList') {
             $listMultiSelect = isset($field['listMultiSelect']) && (int)$field['listMultiSelect'] > 0;
             $listOptions = isset($field['listOptions']) && is_array($field['listOptions']) ? $field['listOptions'] : [];
@@ -317,6 +323,18 @@ if (!empty($fields)) {
         } elseif ($type === 'phone') {
             echo '<div class="bearcms-form-element-field-phone-container">';
             echo '<form-element-textbox ' . $fieldAttributes . ' inputType="tel"/>';
+            echo '</div>';
+        } elseif ($type === 'date') {
+            echo '<div class="bearcms-form-element-field-date-container">';
+            echo '<form-element-datetime ' . $fieldAttributes . ' showTime="false" type="native"/>';
+            echo '</div>';
+        } elseif ($type === 'time') {
+            echo '<div class="bearcms-form-element-field-time-container">';
+            echo '<form-element-datetime ' . $fieldAttributes . ' showDate="false" showTime="true" type="native"/>';
+            echo '</div>';
+        } elseif ($type === 'datetime') {
+            echo '<div class="bearcms-form-element-field-datetime-container">';
+            echo '<form-element-datetime ' . $fieldAttributes . ' showTime="true" type="native"/>';
             echo '</div>';
         } elseif ($type === 'openedList') {
             $listMultiSelect = isset($field['listMultiSelect']) && (int)$field['listMultiSelect'] > 0;

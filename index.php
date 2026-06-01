@@ -59,7 +59,7 @@ $app->bearCMS->addons
             $type->canImportExport = true;
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['form'] = ['v2', function ($options, $idPrefix, $parentSelector, $context, $details): void {
+            \BearCMS\Internal\Themes::$elementsOptions['form'] = ['v3', function ($options, $idPrefix, $parentSelector, $context, $details): void {
                 $groupForm = $options->addGroup(__("bearcms-forms.themes.options.Form"));
                 $groupForm->addOption($idPrefix . "FormCSS", "css", '', [
                     "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
@@ -184,6 +184,51 @@ $app->bearCMS->addons
                 $addFieldLabel($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
                 $addFieldHint($fieldPhone, 'FormFieldPhone', 'textbox', 'bearcms-form-element-field-phone-container');
                 $addFieldContainer($fieldPhone, 'FormFieldPhone', 'bearcms-form-element-field-phone-container');
+
+                // Date
+                $fieldDate = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldDate"));
+                $fieldDate->addOption($idPrefix . "FormFieldDateCSS", "css", '', [
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
+                    "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-date-container [data-form-element-type="datetime"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
+                        ["selector", $parentSelector . ' .bearcms-form-element-field-date-container [data-form-element-type="datetime"] [data-form-element-component="input"]']
+                    ],
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                ]);
+                $addFieldLabel($fieldDate, 'FormFieldDate', 'datetime', 'bearcms-form-element-field-date-container');
+                $addFieldHint($fieldDate, 'FormFieldDate', 'datetime', 'bearcms-form-element-field-date-container');
+                $addFieldContainer($fieldDate, 'FormFieldDate', 'bearcms-form-element-field-date-container');
+
+                // Time
+                $fieldTime = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldTime"));
+                $fieldTime->addOption($idPrefix . "FormFieldTimeCSS", "css", '', [
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
+                    "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-time-container [data-form-element-type="datetime"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
+                        ["selector", $parentSelector . ' .bearcms-form-element-field-time-container [data-form-element-type="datetime"] [data-form-element-component="input"]']
+                    ],
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                ]);
+                $addFieldLabel($fieldTime, 'FormFieldTime', 'datetime', 'bearcms-form-element-field-time-container');
+                $addFieldHint($fieldTime, 'FormFieldTime', 'datetime', 'bearcms-form-element-field-time-container');
+                $addFieldContainer($fieldTime, 'FormFieldTime', 'bearcms-form-element-field-time-container');
+
+                // DateTime
+                $fieldDateTime = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldDateTime"));
+                $fieldDateTime->addOption($idPrefix . "FormFieldDateTimeCSS", "css", '', [
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/sizeState", "*/screenSizeState", "*/pageTypeState"],
+                    "cssOutput" => [
+                        ["rule", $parentSelector . ' .bearcms-form-element-field-datetime-container [data-form-element-type="datetime"] [data-form-element-component="input"]', "display:block;box-sizing:border-box;border:0;"],
+                        ["selector", $parentSelector . ' .bearcms-form-element-field-datetime-container [data-form-element-type="datetime"] [data-form-element-component="input"]']
+                    ],
+                    "defaultValue" => '{"font-family":"Arial","font-size":"14px","color":"#000","width":"100%","height":"40px","line-height":"38px","padding-left":"13px","padding-right":"13px","background-color":"#ffffff","border-top":"1px solid #555","border-bottom":"1px solid #555","border-right":"1px solid #555","border-left":"1px solid #555","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"}'
+                ]);
+                $addFieldLabel($fieldDateTime, 'FormFieldDateTime', 'datetime', 'bearcms-form-element-field-datetime-container');
+                $addFieldHint($fieldDateTime, 'FormFieldDateTime', 'datetime', 'bearcms-form-element-field-datetime-container');
+                $addFieldContainer($fieldDateTime, 'FormFieldDateTime', 'bearcms-form-element-field-datetime-container');
 
                 // Single select opened list
                 $fieldOpenedListSingleSelect = $groupFormFields->addGroup(__("bearcms-forms.themes.options.FieldOpenedListSingleSelect"));
